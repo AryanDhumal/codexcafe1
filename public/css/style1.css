@@ -1,0 +1,250 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+/* Make only the main section titles white */
+section.contact > h2,
+section.map > h2 {
+    color: white;
+}
+.page-heading {
+    color: white;
+}
+
+/* Header Section */
+header {
+    background: #013220;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.1rem;
+}
+
+/* Contact Section */
+.contact {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    max-width: 1100px;
+    margin: auto;
+    gap: 30px;
+}
+
+/* Contact Info */
+.contact-info {
+    text-align: left;
+    max-width: 350px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info h2 {
+    color: #222;
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+.contact-info p {
+    color: #555;
+    font-size: 1.1rem;
+    margin: 5px 0;
+}
+
+/* Social Links */
+.social-links a {
+    display: inline-block;
+    margin-right: 10px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.social-links a:hover {
+    color: black;
+}
+
+/* Contact Form */
+.contact-form {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: left;
+}
+
+.contact-form h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.contact-form label {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.contact-form textarea {
+    height: 100px;
+}
+
+.contact-form button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background: gray;
+}
+
+/* Google Maps */
+.map {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.map-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* Footer */
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+header {
+    background: linear-gradient(135deg, #000000, #333333); /* Refined gradient with a smoother transition */
+    padding: 20px 0;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5); /* Darker shadow for a more dramatic effect */
+    position: relative;
+    z-index: 10;
+    margin-bottom: 20px; /* Space between header and content */
+    border-bottom: 3px solid #444444; /* Subtle border at the bottom */
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 36px; /* Slightly larger logo */
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #e0e0e0; /* Light gray color for the logo */
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+    text-align: center;
+    flex-grow: 1;
+}
+
+header nav {
+    display: flex;
+    justify-content: flex-end;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 25px;
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #e0e0e0; /* Lighter gray for navigation links */
+    font-size: 16px;
+    padding: 12px 20px;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 6px; /* Slightly rounded corners */
+    display: inline-block;
+    font-weight: 600; /* Increased font weight for stronger text */
+}
+
+header nav ul li a:hover {
+    background-color: white; /* Darker gray on hover */
+    color: black /* White text on hover */
+}
+
+header nav ul li a.active {
+    background-color: #f1f1f1; /* Light gray for active menu item */
+    color: #000; /* Dark text for active state */
+}
+
+header nav ul li a:active {
+    transform: scale(0.95);
+    background-color: #333; /* Even darker background for active click */
+}
+
+header nav ul li a:focus {
+    outline: none; /* Remove outline when focused */
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2); /* Add focus shadow */
+}
+h2 {
+    text-align: center; /* Centers text horizontally */
+    width: 100%; /* Ensures it takes full width */
+    font-size: 2rem; /* Adjust font size */
+    font-weight: bold; /* Make it bold */
+    margin: 20px 0; /* Add spacing */
+}
