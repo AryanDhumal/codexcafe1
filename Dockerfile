@@ -1,25 +1,38 @@
-FROM php:8.2-apache
+# Use official PHP image with PHP 8.1 and FPM
+FROM php:8.1-fpm
 
-# Enable required PHP extensions
-RUN docker-php-ext-install pdo pdo_mysql
+# Install system dependencies and PHP extensions required by Laravel
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libzip-dev \
+    unzip \
+    zip \
+    libonig-dev \
+    libxml2-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo_mysql zip mbstring exif pcntl bcmath gd
 
-# Install Composer
+# Install Composer globally (dependency manager for PHP)
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set working directory
+# Set working directory inside the container
 WORKDIR /var/www/html
 
-# Copy project files
-COPY . .
+# Copy all files from your project to the container
+COPY . /var/www/html
 
-# Install dependencies
-RUN composer install --no-dev --optimize-autoloader
+# Install PHP dependencies via Composer
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-# Copy .env example and set app key
-RUN cp .env.example .env && php artisan key:generate
+# Generate Laravel application key (needed for security)
+RUN php artisan key:generate
 
-# Make storage writable
-RUN chmod -R 777 storage bootstrap/cache
+# Expose port 8000 to outside world
+EXPOSE 8000
 
-# Expose port 80
-EXPOSE 80
+# Start Laravel development server on container start
+CMD php artisan serve --host=0.0.0.0 --port=8000
