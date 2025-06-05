@@ -1,38 +1,35 @@
-# Use official PHP 8.2 image
+# Use PHP 8.2 FPM as the base image
 FROM php:8.2-fpm
 
-# Install system dependencies and PHP extensions required by Laravel
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     curl \
-    libzip-dev \
-    unzip \
     zip \
-    libonig-dev \
-    libxml2-dev \
+    unzip \
+    libzip-dev \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
+    libonig-dev \
+    libxml2-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install pdo_mysql zip mbstring exif pcntl bcmath gd
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
 # Install Composer globally
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set working directory
+# Set the working directory
 WORKDIR /var/www/html
 
-# Copy project files
-COPY . /var/www/html
+# Copy the project files into the container
+COPY . .
 
 # Install PHP dependencies
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-# Generate application key
-RUN php artisan key:generate
-
-# Expose port
+# Expose the port Laravel will run on
 EXPOSE 8000
 
-# Start Laravel server
-CMD php artisan serve --host=0.0.0.0 --port=8000
+# Start the Laravel development server
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
